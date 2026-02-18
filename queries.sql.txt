@@ -1,0 +1,38 @@
+SELECT  
+    d.Name AS doctor_name, 
+    SUM(b.AmountPaid + b.InsuranceCovered) AS total_revenue,
+    SUM(CASE WHEN v.Status = 'Completed' THEN (b.AmountPaid + b.InsuranceCovered) ELSE 0 END) AS total_completed_revenue
+FROM Visits v
+JOIN Billing b ON v.VisitID = b.VisitID
+JOIN Doctors d ON v.DoctorID = d.DoctorID
+GROUP BY d.Name
+ORDER BY total_revenue DESC;
+
+SELECT  d.Specialty, 
+        SUM(b.AmountPaid + b.InsuranceCovered) AS total_revenue,
+        SUM(CASE WHEN v.Status = 'Completed' THEN (b.AmountPaid + b.InsuranceCovered) ELSE 0 END) AS total_completed_revenue
+FROM Visits v 
+JOIN Doctors d ON v.DoctorID = d.DoctorID
+JOIN Billing b ON v.VisitID = b.VisitID
+GROUP BY d.Specialty
+ORDER BY total_revenue DESC;
+
+SELECT  p.Region,
+        SUM(CASE WHEN v.Status = 'Completed' THEN b.AmountPaid ELSE 0 END) AS total_patient_paid,
+        SUM(CASE WHEN v.Status = 'Completed' THEN b.InsuranceCovered ELSE 0 END) AS total_insurance_covered
+FROM Visits v
+JOIN Billing b ON v.VisitID = b.VisitID
+JOIN Patients p ON v.PatientID = p.PatientID
+GROUP BY p.Region
+ORDER BY total_patient_paid DESC;
+
+SELECT  d.Specialty, 
+        p.Region, 
+        SUM(b.AmountPaid + b.InsuranceCovered) AS total_revenue,
+        SUM(CASE WHEN v.Status = 'Completed' THEN (b.AmountPaid + b.InsuranceCovered) ELSE 0 END) AS completed_total_revenue
+FROM Visits v
+JOIN Patients p ON v.PatientID = p.PatientID
+JOIN Billing b ON v.VisitID = b.VisitID
+JOIN Doctors d ON v.DoctorID = d.DoctorID
+GROUP BY d.Specialty, p.Region
+ORDER BY completed_total_revenue DESC;

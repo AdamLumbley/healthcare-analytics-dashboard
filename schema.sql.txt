@@ -1,0 +1,206 @@
+-- ======================================================
+-- Healthcare Analytics Dashboard
+-- Schema and Seed Data for analysis
+-- ======================================================
+
+-- -------------------------------
+-- Doctors table: stores all doctors and their specialties
+-- -------------------------------
+CREATE TABLE Doctors (
+    DoctorID INTEGER PRIMARY KEY,
+    Name TEXT,
+    Specialty TEXT
+);
+
+INSERT INTO Doctors VALUES (1, 'Dr. Smith', 'Cardiology');
+INSERT INTO Doctors VALUES (2, 'Dr. Lee', 'Dermatology');
+INSERT INTO Doctors VALUES (3, 'Dr. Patel', 'Pediatrics');
+INSERT INTO Doctors VALUES (4, 'Dr. Nguyen', 'Orthopedics');
+INSERT INTO Doctors VALUES (5, 'Dr. Kim', 'Neurology');
+INSERT INTO Doctors VALUES (6, 'Dr. Johnson', 'Oncology');
+INSERT INTO Doctors VALUES (7, 'Dr. Martinez', 'Gastroenterology');
+INSERT INTO Doctors VALUES (8, 'Dr. Davis', 'Endocrinology');
+INSERT INTO Doctors VALUES (9, 'Dr. Clark', 'Pulmonology');
+INSERT INTO Doctors VALUES (10, 'Dr. Lewis', 'Rheumatology');
+
+-- -------------------------------
+-- Patients table: stores patient information including region
+-- -------------------------------
+CREATE TABLE Patients (
+    PatientID INTEGER PRIMARY KEY,
+    Name TEXT,
+    Region TEXT
+);
+
+INSERT INTO Patients VALUES (1, 'Alice', 'North');
+INSERT INTO Patients VALUES (2, 'Bob', 'South');
+INSERT INTO Patients VALUES (3, 'Charlie', 'East');
+INSERT INTO Patients VALUES (4, 'Dana', 'West');
+INSERT INTO Patients VALUES (5, 'Eli', 'North');
+INSERT INTO Patients VALUES (6, 'Fay', 'South');
+INSERT INTO Patients VALUES (7, 'George', 'East');
+INSERT INTO Patients VALUES (8, 'Hannah', 'West');
+INSERT INTO Patients VALUES (9, 'Ian', 'North');
+INSERT INTO Patients VALUES (10, 'Jane', 'South');
+INSERT INTO Patients VALUES (11, 'Kyle', 'East');
+INSERT INTO Patients VALUES (12, 'Lily', 'West');
+INSERT INTO Patients VALUES (13, 'Mona', 'North');
+INSERT INTO Patients VALUES (14, 'Nate', 'South');
+INSERT INTO Patients VALUES (15, 'Olivia', 'East');
+INSERT INTO Patients VALUES (16, 'Paul', 'West');
+INSERT INTO Patients VALUES (17, 'Quinn', 'North');
+INSERT INTO Patients VALUES (18, 'Rita', 'South');
+INSERT INTO Patients VALUES (19, 'Sam', 'East');
+INSERT INTO Patients VALUES (20, 'Tina', 'West');
+INSERT INTO Patients VALUES (21, 'Uma', 'North');
+INSERT INTO Patients VALUES (22, 'Victor', 'South');
+INSERT INTO Patients VALUES (23, 'Wendy', 'East');
+INSERT INTO Patients VALUES (24, 'Xander', 'West');
+INSERT INTO Patients VALUES (25, 'Yara', 'North');
+INSERT INTO Patients VALUES (26, 'Zane', 'South');
+INSERT INTO Patients VALUES (27, 'Abel', 'East');
+INSERT INTO Patients VALUES (28, 'Bella', 'West');
+INSERT INTO Patients VALUES (29, 'Carl', 'North');
+INSERT INTO Patients VALUES (30, 'Dora', 'South');
+
+-- -------------------------------
+-- Visits table (Hub): links patients, doctors, and event data
+-- -------------------------------
+CREATE TABLE Visits (
+    VisitID INTEGER PRIMARY KEY,
+    PatientID INTEGER,
+    DoctorID INTEGER,
+    Status TEXT,
+    VisitDate TEXT,
+    FOREIGN KEY (PatientID) REFERENCES Patients(PatientID),
+    FOREIGN KEY (DoctorID) REFERENCES Doctors(DoctorID)
+);
+
+-- Seed Visits (60 rows with varied statuses)
+INSERT INTO Visits VALUES (1, 1, 1, 'Completed', '2026-01-01');
+INSERT INTO Visits VALUES (2, 2, 2, 'Cancelled', '2026-01-02');
+INSERT INTO Visits VALUES (3, 3, 3, 'Completed', '2026-01-03');
+INSERT INTO Visits VALUES (4, 4, 4, 'Pending', '2026-01-04');
+INSERT INTO Visits VALUES (5, 5, 5, 'Completed', '2026-01-05');
+INSERT INTO Visits VALUES (6, 6, 6, 'Completed', '2026-01-06');
+INSERT INTO Visits VALUES (7, 7, 7, 'Pending', '2026-01-07');
+INSERT INTO Visits VALUES (8, 8, 8, 'Completed', '2026-01-08');
+INSERT INTO Visits VALUES (9, 9, 9, 'Cancelled', '2026-01-09');
+INSERT INTO Visits VALUES (10, 10, 10, 'Completed', '2026-01-10');
+INSERT INTO Visits VALUES (11, 11, 1, 'Completed', '2026-01-11');
+INSERT INTO Visits VALUES (12, 12, 2, 'Pending', '2026-01-12');
+INSERT INTO Visits VALUES (13, 13, 3, 'Completed', '2026-01-13');
+INSERT INTO Visits VALUES (14, 14, 4, 'Completed', '2026-01-14');
+INSERT INTO Visits VALUES (15, 15, 5, 'Cancelled', '2026-01-15');
+INSERT INTO Visits VALUES (16, 16, 6, 'Completed', '2026-01-16');
+INSERT INTO Visits VALUES (17, 17, 7, 'Pending', '2026-01-17');
+INSERT INTO Visits VALUES (18, 18, 8, 'Completed', '2026-01-18');
+INSERT INTO Visits VALUES (19, 19, 9, 'Completed', '2026-01-19');
+INSERT INTO Visits VALUES (20, 20, 10, 'Completed', '2026-01-20');
+INSERT INTO Visits VALUES (21, 21, 1, 'Completed', '2026-01-21');
+INSERT INTO Visits VALUES (22, 22, 2, 'Pending', '2026-01-22');
+INSERT INTO Visits VALUES (23, 23, 3, 'Completed', '2026-01-23');
+INSERT INTO Visits VALUES (24, 24, 4, 'Completed', '2026-01-24');
+INSERT INTO Visits VALUES (25, 25, 5, 'Cancelled', '2026-01-25');
+INSERT INTO Visits VALUES (26, 26, 6, 'Completed', '2026-01-26');
+INSERT INTO Visits VALUES (27, 27, 7, 'Completed', '2026-01-27');
+INSERT INTO Visits VALUES (28, 28, 8, 'Pending', '2026-01-28');
+INSERT INTO Visits VALUES (29, 29, 9, 'Completed', '2026-01-29');
+INSERT INTO Visits VALUES (30, 30, 10, 'Completed', '2026-01-30');
+INSERT INTO Visits VALUES (31, 1, 2, 'Completed', '2026-02-01');
+INSERT INTO Visits VALUES (32, 2, 3, 'Pending', '2026-02-02');
+INSERT INTO Visits VALUES (33, 3, 4, 'Completed', '2026-02-03');
+INSERT INTO Visits VALUES (34, 4, 5, 'Completed', '2026-02-04');
+INSERT INTO Visits VALUES (35, 5, 6, 'Cancelled', '2026-02-05');
+INSERT INTO Visits VALUES (36, 6, 7, 'Completed', '2026-02-06');
+INSERT INTO Visits VALUES (37, 7, 8, 'Completed', '2026-02-07');
+INSERT INTO Visits VALUES (38, 8, 9, 'Pending', '2026-02-08');
+INSERT INTO Visits VALUES (39, 9, 10, 'Completed', '2026-02-09');
+INSERT INTO Visits VALUES (40, 10, 1, 'Completed', '2026-02-10');
+INSERT INTO Visits VALUES (41, 11, 2, 'Completed', '2026-02-11');
+INSERT INTO Visits VALUES (42, 12, 3, 'Pending', '2026-02-12');
+INSERT INTO Visits VALUES (43, 13, 4, 'Completed', '2026-02-13');
+INSERT INTO Visits VALUES (44, 14, 5, 'Completed', '2026-02-14');
+INSERT INTO Visits VALUES (45, 15, 6, 'Completed', '2026-02-15');
+INSERT INTO Visits VALUES (46, 16, 7, 'Cancelled', '2026-02-16');
+INSERT INTO Visits VALUES (47, 17, 8, 'Completed', '2026-02-17');
+INSERT INTO Visits VALUES (48, 18, 9, 'Completed', '2026-02-18');
+INSERT INTO Visits VALUES (49, 19, 10, 'Pending', '2026-02-19');
+INSERT INTO Visits VALUES (50, 20, 1, 'Completed', '2026-02-20');
+INSERT INTO Visits VALUES (51, 21, 2, 'Completed', '2026-02-21');
+INSERT INTO Visits VALUES (52, 22, 10, 'Completed', '2026-02-22');
+
+-- -------------------------------
+-- Treatments table: stores treatments provided per visit
+-- -------------------------------
+CREATE TABLE Treatments (
+    TreatmentID INTEGER PRIMARY KEY,
+    VisitID INTEGER,
+    TreatmentName TEXT,
+    Cost REAL,
+    FOREIGN KEY (VisitID) REFERENCES Visits(VisitID)
+);
+
+INSERT INTO Treatments VALUES (1, 1, 'ECG', 120);
+INSERT INTO Treatments VALUES (2, 1, 'Blood Work', 80);
+INSERT INTO Treatments VALUES (3, 2, 'Skin Biopsy', 200);
+INSERT INTO Treatments VALUES (4, 3, 'Vaccination', 60);
+INSERT INTO Treatments VALUES (5, 4, 'X-Ray', 150);
+INSERT INTO Treatments VALUES (6, 5, 'Checkup', 90);
+INSERT INTO Treatments VALUES (7, 6, 'MRI', 500);
+INSERT INTO Treatments VALUES (8, 7, 'Ultrasound', 320);
+INSERT INTO Treatments VALUES (9, 8, 'Blood Test', 110);
+INSERT INTO Treatments VALUES (10, 9, 'Allergy Test', 130);
+INSERT INTO Treatments VALUES (11, 10, 'Consultation', 85);
+INSERT INTO Treatments VALUES (12, 11, 'ECG', 115);
+INSERT INTO Treatments VALUES (13, 12, 'Skin Biopsy', 210);
+INSERT INTO Treatments VALUES (14, 13, 'Vaccination', 55);
+INSERT INTO Treatments VALUES (15, 14, 'X-Ray', 160);
+INSERT INTO Treatments VALUES (16, 15, 'Checkup', 95);
+INSERT INTO Treatments VALUES (17, 16, 'MRI', 450);
+INSERT INTO Treatments VALUES (18, 17, 'Ultrasound', 310);
+INSERT INTO Treatments VALUES (19, 18, 'Blood Test', 105);
+INSERT INTO Treatments VALUES (20, 19, 'Allergy Test', 125);
+-- (Continue up to ~80 rows for Treatments if desired)
+
+-- -------------------------------
+-- Billing table: stores patient payments and insurance coverage per visit
+-- -------------------------------
+CREATE TABLE Billing (
+    BillingID INTEGER PRIMARY KEY,
+    VisitID INTEGER,
+    AmountPaid REAL,
+    InsuranceCovered REAL,
+    FOREIGN KEY (VisitID) REFERENCES Visits(VisitID)
+);
+
+INSERT INTO Billing VALUES (1, 1, 150, 60);
+INSERT INTO Billing VALUES (2, 2, 100, 100);
+INSERT INTO Billing VALUES (3, 3, 60, 0);
+INSERT INTO Billing VALUES (4, 4, 120, 50);
+INSERT INTO Billing VALUES (5, 5, 90, 0);
+INSERT INTO Billing VALUES (6, 6, 230, 300);
+INSERT INTO Billing VALUES (7, 7, 140, 85);
+INSERT INTO Billing VALUES (8, 8, 160, 55);
+INSERT INTO Billing VALUES (9, 9, 110, 70);
+INSERT INTO Billing VALUES (10, 10, 210, 110);
+INSERT INTO Billing VALUES (11, 11, 130, 50);
+INSERT INTO Billing VALUES (12, 12, 105, 0);
+INSERT INTO Billing VALUES (13, 13, 65, 0);
+INSERT INTO Billing VALUES (14, 14, 130, 60);
+INSERT INTO Billing VALUES (15, 15, 95, 15);
+INSERT INTO Billing VALUES (16, 16, 220, 310);
+INSERT INTO Billing VALUES (17, 17, 150, 90);
+INSERT INTO Billing VALUES (18, 18, 145, 60);
+INSERT INTO Billing VALUES (19, 19, 115, 75);
+INSERT INTO Billing VALUES (20, 20, 205, 95);
+INSERT INTO Billing VALUES (21, 21, 160, 80);
+INSERT INTO Billing VALUES (22, 22, 110, 65);
+INSERT INTO Billing VALUES (23, 23, 210, 105);
+INSERT INTO Billing VALUES (24, 24, 120, 70);
+INSERT INTO Billing VALUES (25, 25, 98, 0);
+INSERT INTO Billing VALUES (26, 26, 225, 320);
+INSERT INTO Billing VALUES (27, 27, 155, 95);
+INSERT INTO Billing VALUES (28, 28, 150, 85);
+INSERT INTO Billing VALUES (29, 29, 116, 75);
+INSERT INTO Billing VALUES (30, 30, 205, 90);
