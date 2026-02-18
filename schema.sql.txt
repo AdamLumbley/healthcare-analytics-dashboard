@@ -76,7 +76,6 @@ CREATE TABLE Visits (
     FOREIGN KEY (DoctorID) REFERENCES Doctors(DoctorID)
 );
 
--- Seed Visits (60 rows with varied statuses)
 INSERT INTO Visits VALUES (1, 1, 1, 'Completed', '2026-01-01');
 INSERT INTO Visits VALUES (2, 2, 2, 'Cancelled', '2026-01-02');
 INSERT INTO Visits VALUES (3, 3, 3, 'Completed', '2026-01-03');
@@ -161,7 +160,6 @@ INSERT INTO Treatments VALUES (17, 16, 'MRI', 450);
 INSERT INTO Treatments VALUES (18, 17, 'Ultrasound', 310);
 INSERT INTO Treatments VALUES (19, 18, 'Blood Test', 105);
 INSERT INTO Treatments VALUES (20, 19, 'Allergy Test', 125);
--- (Continue up to ~80 rows for Treatments if desired)
 
 -- -------------------------------
 -- Billing table: stores patient payments and insurance coverage per visit
@@ -204,3 +202,4 @@ INSERT INTO Billing VALUES (27, 27, 155, 95);
 INSERT INTO Billing VALUES (28, 28, 150, 85);
 INSERT INTO Billing VALUES (29, 29, 116, 75);
 INSERT INTO Billing VALUES (30, 30, 205, 90);
+
